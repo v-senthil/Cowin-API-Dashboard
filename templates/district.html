@@ -1,0 +1,92 @@
+{% block title %} Dashboard {% endblock title %}
+{% extends 'navbar.html' %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
+
+<br><br><br>
+<script>
+
+var stateObject = {
+   "India": { "Andaman and Nicobar Islands": ["Nicobar", "North and Middle Andaman","South Andaman"],
+              "Andhra Pradesh": ['Anantapur', 'Chittoor', 'East Godavari', 'Guntur', 'Krishna', 'Kurnool', 'Prakasam', 'Sri Potti Sriramulu Nellore', ' Srikakulam','Visakhapatnam', 'Vizianagaram', 'West Godavari', 'YSR District, Kadapa (Cuddapah)'],
+
+
+
+// {'state_id': 2, 'state_name': 'Andhra Pradesh'}, {'state_id': 3, 'state_name': 'Arunachal Pradesh'}, {'state_id': 4, 'state_name': 'Assam'}, {'state_id': 5, 'state_name': 'Bihar'}, {'state_id': 6, 'state_name': 'Chandigarh'}, {'state_id': 7, 'state_name': 'Chhattisgarh'}, {'state_id': 8, 'state_name': 'Dadra and Nagar Haveli'}, {'state_id': 37, 'state_name': 'Daman and Diu'}, {'state_id': 9, 'state_name': 'Delhi'}, {'state_id': 10, 'state_name': 'Goa'}, {'state_id': 11, 'state_name': 'Gujarat'}, {'state_id': 12, 'state_name': 'Haryana'}, {'state_id': 13, 'state_name': 'Himachal Pradesh'}, {'state_id': 14, 'state_name': 'Jammu and Kashmir'}, {'state_id': 15, 'state_name': 'Jharkhand'}, {'state_id': 16, 'state_name': 'Karnataka'}, {'state_id': 17, 'state_name': 'Kerala'}, {'state_id': 18, 'state_name': 'Ladakh'}, {'state_id': 19, 'state_name': 'Lakshadweep'}, {'state_id': 20, 'state_name': 'Madhya Pradesh'}, {'state_id': 21, 'state_name': 'Maharashtra'}, {'state_id': 22, 'state_name': 'Manipur'}, {'state_id': 23, 'state_name': 'Meghalaya'}, {'state_id': 24, 'state_name': 'Mizoram'}, {'state_id': 25, 'state_name': 'Nagaland'}, {'state_id': 26, 'state_name': 'Odisha'}, {'state_id': 27, 'state_name': 'Puducherry'}, {'state_id': 28, 'state_name': 'Punjab'}, {'state_id': 29, 'state_name': 'Rajasthan'}, {'state_id': 30, 'state_name': 'Sikkim'}, {'state_id': 31, 'state_name': 'Tamil Nadu'}, {'state_id': 32, 'state_name': 'Telangana'}, {'state_id': 33, 'state_name': 'Tripura'}, {'state_id': 34, 'state_name': 'Uttar Pradesh'}, {'state_id': 35, 'state_name': 'Uttarakhand'}, {'state_id': 36, 'state_name': 'West Bengal'}
+
+
+
+
+  },
+  }
+
+
+window.onload = function () {
+var countySel = document.getElementById("countySel"),
+stateSel = document.getElementById("stateSel"),
+districtSel = document.getElementById("districtSel");
+for (var country in stateObject) {
+countySel.options[countySel.options.length] = new Option(country, country);
+}
+countySel.onchange = function () {
+stateSel.length = 1; // remove all options bar first
+districtSel.length = 1; // remove all options bar first
+if (this.selectedIndex < 1) return; // done
+for (var state in stateObject[this.value]) {
+stateSel.options[stateSel.options.length] = new Option(state, state);
+}
+}
+countySel.onchange(); // reset in case page is reloaded
+stateSel.onchange = function () {
+districtSel.length = 1; // remove all options bar first
+if (this.selectedIndex < 1) return; // done
+var district = stateObject[countySel.value][this.value];
+for (var i = 0; i < district.length; i++) {
+districtSel.options[districtSel.options.length] = new Option(district[i], district[i]);
+}
+}
+}
+
+
+  // }, {'state_id': 2, 'state_name': 'Andhra Pradesh'}, {'state_id': 3, 'state_name': 'Arunachal Pradesh'}, {'state_id': 4, 'state_name': 'Assam'}, {'state_id': 5, 'state_name': 'Bihar'}, {'state_id': 6, 'state_name': 'Chandigarh'}, {'state_id': 7, 'state_name': 'Chhattisgarh'}, {'state_id': 8, 'state_name': 'Dadra and Nagar Haveli'}, {'state_id': 37, 'state_name': 'Daman and Diu'}, {'state_id': 9, 'state_name': 'Delhi'}, {'state_id': 10, 'state_name': 'Goa'}, {'state_id': 11, 'state_name': 'Gujarat'}, {'state_id': 12, 'state_name': 'Haryana'}, {'state_id': 13, 'state_name': 'Himachal Pradesh'}, {'state_id': 14, 'state_name': 'Jammu and Kashmir'}, {'state_id': 15, 'state_name': 'Jharkhand'}, {'state_id': 16, 'state_name': 'Karnataka'}, {'state_id': 17, 'state_name': 'Kerala'}, {'state_id': 18, 'state_name': 'Ladakh'}, {'state_id': 19, 'state_name': 'Lakshadweep'}, {'state_id': 20, 'state_name': 'Madhya Pradesh'}, {'state_id': 21, 'state_name': 'Maharashtra'}, {'state_id': 22, 'state_name': 'Manipur'}, {'state_id': 23, 'state_name': 'Meghalaya'}, {'state_id': 24, 'state_name': 'Mizoram'}, {'state_id': 25, 'state_name': 'Nagaland'}, {'state_id': 26, 'state_name': 'Odisha'}, {'state_id': 27, 'state_name': 'Puducherry'}, {'state_id': 28, 'state_name': 'Punjab'}, {'state_id': 29, 'state_name': 'Rajasthan'}, {'state_id': 30, 'state_name': 'Sikkim'}, {'state_id': 31, 'state_name': 'Tamil Nadu'}, {'state_id': 32, 'state_name': 'Telangana'}, {'state_id': 33, 'state_name': 'Tripura'}, {'state_id': 34, 'state_name': 'Uttar Pradesh'}, {'state_id': 35, 'state_name': 'Uttarakhand'}, {'state_id': 36, 'state_name': 'West Bengal'}
+
+
+</script>
+
+<form action="/getdistrict", method="post" enctype="multipart/form-data" name="myform" id="myForm" >
+<div class="row">
+    <div class="col">
+      <select name="state" id="countySel"  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+      <option value="" selected="selected">Select Country</option>
+      </select>
+    </div>
+      <br>
+      <br>
+    <div class="col">
+      <select name="countrya" id="stateSel" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+      <option value="" selected="selected">Please select Country first</option>
+      </select>
+    </div>
+      <br>
+      <br>
+      <div class="col">
+        <select name="district" id="districtSel" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+        <option value="" selected="selected">Please select State first</option>
+        </select>
+      </div>
+      </div>
+    <button type="submit" class="btn btn-primary">Get Data</button>
+</form>
+
+
+
+
+
+
+<div><p style="color: red;">{{error}} </p></div>
+<div><p style="color: white;">{{success}} </p></div>
+
+{% endblock content %}

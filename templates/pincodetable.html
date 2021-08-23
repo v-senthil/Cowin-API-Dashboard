@@ -1,0 +1,135 @@
+{% block title %} Dashboard {% endblock title %}
+{% extends 'navbar.html' %}
+{% block content %}
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: center;
+  padding: 12px;
+}
+
+#myTable th, #myTable td {
+  color: white;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: black;
+}
+</style>
+
+<a href="/"><button type="submit" class="btn btn-primary">Prevoius Page</button></a>
+<br><br><br>
+
+<div style="color: white;">
+
+
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+
+  
+    <table class="table table-bordered table-striped lastdatavalue" id="lastdatavalue">
+      <thead>
+      <tr class="header">
+        <th style="color: white; text-align: center;">Center ID</th>
+        <th style="color: white; text-align: center; width: 7%"> Center Name </th>
+        <th style="color: white; text-align: center;"> Date </th>
+        <th style="color: white; text-align: center; width: 11%"> Address </th>
+        <th style="color: white; text-align: center;"> State </th>
+        <th style="color: white; text-align: center;"> District </th>
+        <th style="color: white; text-align: center;"> Fee Type </th>
+        <th style="color: white; text-align: center;"> Minimum Age </th>
+        <th style="color: white; text-align: center;"> Available Capacity </th>
+        <th style="color: white; text-align: center;"> Dose 1 </th>
+        <th style="color: white; text-align: center;"> Dose 2 </th>
+        <th style="color: white; text-align: center;"> Vaccine Type </th>
+<!--         <th style="color: white; text-align: center;"> Next Date </th>
+        <th style="color: white; text-align: center;"> Next Date </th> -->
+      </tr>
+    </thead>
+      {% for i in range(0, lenno) %}
+      <tbody id="myTable">
+      <tr>
+        <td>{{ data['centers'][i]['center_id']}}</td>
+        <td>{{ data['centers'][i]['name']}}</td>
+        <td>{{ data['centers'][i]['sessions'][0]['date']}} </td>
+        <td>{{ data['centers'][i]['address']}}</td>
+        <td>{{ data['centers'][i]['state_name']}}</td>
+        <td>{{ data['centers'][i]['district_name']}}</td>
+        <td>{{ data['centers'][i]['fee_type']}}</td>
+        <td>{{ data['centers'][i]['sessions'][0]['min_age_limit']}}</td>
+        <td>{{ data['centers'][i]['sessions'][0]['available_capacity']}}</td>
+        <td>{{ data['centers'][i]['sessions'][0]['available_capacity_dose1']}}</td>
+        <td>{{ data['centers'][i]['sessions'][0]['available_capacity_dose2']}}</td>
+        <td>{{ data['centers'][i]['sessions'][0]['vaccine']}}</td>
+        <!-- {% if  data['centers'][i]['sessions'][1] %}
+        <td>{{ data['centers'][i]['sessions'][1]['date']}} number available {{ data['centers'][i]['sessions'][1]['available_capacity']}}</td>
+        {% else %}
+        <td> No data Available </td>
+        {% endif %}
+        {% if  data['centers'][i]['sessions'][2] %}
+        <td>{{ data['centers'][i]['sessions'][2]['date']}} number available {{ data['centers'][i]['sessions'][2]['available_capacity']}}</td>
+        {% else %}
+        <td> No data Available </td>
+        {% endif %} -->
+      </tr>
+      </tbody>
+  {% endfor %}
+  </table>  
+
+</div>
+
+
+
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+ // $('.lastdatavalue td').each(function(){
+ //        var num = parseFloat($(this).text());
+ //        if (num > 44) {
+ //            $(this).addClass('success');
+ //            $(this).css('color','Green');
+ //        } else if (num < 0) {
+ //            $(this).addClass('danger');
+ //            $(this).css('color','Red');
+ //        }
+ //    });
+
+
+</script>
+
+
+
+{% endblock content %}
